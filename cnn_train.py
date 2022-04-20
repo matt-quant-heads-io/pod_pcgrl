@@ -6,9 +6,9 @@ import numpy as np
 from keras.utils import np_utils
 
 
-obs_size = 5
-data_size = 1
-version = 3
+obs_size = 22
+data_size = 50
+version = 1
 
 pod_root_path = f'pod_exp_traj_obs_{obs_size}_ep_len_77_goal_size_{data_size}'
 
