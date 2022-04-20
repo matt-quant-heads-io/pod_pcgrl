@@ -1,0 +1,2 @@
+mkdir pod_exp_traj_obs_22_ep_len_77_goal_size_50
+mkdir pod_generated_obs_22_ep_len_77_goal_size_50
