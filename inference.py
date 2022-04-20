@@ -210,9 +210,9 @@ def infer(game, representation, model_path, **kwargs):
 
 
     # USE params goal_map_size, version, obs_size to load corresponding trained CNN
-    goal_map_size = 1
+    goal_map_size = 50
     version = 3
-    obs_size = 5
+    obs_size = 22
     kwargs['cropped_size'] = obs_size
     kwargs['render'] = True
 
@@ -249,24 +249,22 @@ def infer(game, representation, model_path, **kwargs):
                 else:
                     action = [0]
                 obs, _, dones, info = env.step([action])
-                img = prob.render(info[0]["final_map"])
-                img.save(f'vid_zelda_playable_maps_obs_5_ep_len_77_goal_size_50_2/{j}.png')
+#                 img = prob.render(info[0]["final_map"])
+#                 img.save(f'vid_zelda_playable_maps_obs_5_ep_len_77_goal_size_50_2/{j}.png')
                 if info[0]["solved"]:
                     success_count += 1
-                    img = prob.render(info[0]["final_map"])
-                    img.save(f'vid_zelda_playable_maps_obs_5_ep_len_77_goal_size_50_2/{j}.png')
-                    # final_map = info[0]["final_map"]
-                    # level_str = ''
-                    #
-                    # for row in final_map:
-                    #     new_row = []
-                    #     for col in row:
-                    #         level_str += REV_TILES_MAP[col]
-                    #
-                    #
-                    # f = open(f'pod_playable_obs_{obs_size}_goal_size_{goal_map_size}_{version}/{success_count}.txt', 'w')
-                    # f.write(level_str)
-                    # f.close()
+                    final_map = info[0]["final_map"]
+                    level_str = ''
+                    
+                    for row in final_map:
+                        new_row = []
+                        for col in row:
+                            level_str += REV_TILES_MAP[col]
+                    
+                    
+                    f = open(f'pod_generated_obs_{obs_size}_goal_size_{goal_map_size}_{version}/{success_count}.txt', 'w')
+                    f.write(level_str)
+                    f.close()
                 if kwargs.get('verbose', False):
                     pass
                 if dones:
